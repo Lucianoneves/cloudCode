@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Futebol FDS
 
-## Getting Started
+Aplicação web construída com **Next.js (App Router)**. O projeto está na fase inicial: a página atual ainda é o template gerado pelo `create-next-app`, pronta para receber as funcionalidades.
 
-First, run the development server:
+## Tecnologias
+
+| Tecnologia | Versão | Uso |
+| --- | --- | --- |
+| [Next.js](https://nextjs.org) | 16.4.3 | Framework React com App Router, Cache Components e Partial Prefetching |
+| [React](https://react.dev) | 19.3.0 | Interface, com **React Compiler** ativado |
+| [TypeScript](https://www.typescriptlang.org) | 5.x | Tipagem estática |
+| [Tailwind CSS](https://tailwindcss.com) | 4.x | Estilização (via `@tailwindcss/turbopack`) |
+| [Turbopack](https://nextjs.org/docs/app/api-reference/turbopack) | — | Bundler de desenvolvimento e build |
+| [ESLint](https://eslint.org) | 9.x | Lint com `eslint-config-next` |
+| [Geist](https://vercel.com/font) | — | Fontes Geist Sans e Geist Mono via `next/font` |
+
+Configurações relevantes em [next.config.ts](next.config.ts): `cacheComponents`, `partialPrefetching` e `reactCompiler` habilitados.
+
+## Pré-requisitos
+
+- Node.js 20 ou superior
+- npm
+
+## Como rodar
 
 ```bash
+# instalar dependências
+npm install
+
+# servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando | Descrição |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera o build de produção |
+| `npm run start` | Executa o build de produção |
+| `npm run lint` | Roda o ESLint |
 
-## Learn More
+## Estrutura do projeto
 
-To learn more about Next.js, take a look at the following resources:
+```
+futebol-fds/
+├── app/
+│   ├── layout.tsx      # Layout raiz (fontes Geist, metadata)
+│   ├── page.tsx        # Página inicial
+│   └── globals.css     # Estilos globais e Tailwind
+├── public/             # Arquivos estáticos
+├── next.config.ts      # Configuração do Next.js
+├── eslint.config.mjs   # Configuração do ESLint
+├── tsconfig.json       # Configuração do TypeScript
+├── AGENTS.md           # Instruções para agentes de IA
+└── claude.md           # Convenções do projeto para o Claude Code
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Convenções
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Server Components por padrão**: use `'use client'` apenas quando precisar de hooks, eventos ou APIs do navegador.
+- Rotas ficam em `app/`, componentes reutilizáveis em `components/` e helpers em `lib/`.
+- Esta versão do Next.js tem mudanças em relação às anteriores. Consulte a documentação em `node_modules/next/dist/docs/` antes de usar APIs novas.
 
-## Deploy on Vercel
+## Skills de IA
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O repositório inclui skills para agentes de código (Claude Code, Aider) em `.claude/skills/`, `.agents/skills/` e `.aider-desk/skills/`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `vercel-react-best-practices`: boas práticas de performance para React e Next.js
+- `web-design-guidelines`: diretrizes de design e acessibilidade para web
+
+## Deploy
+
+A forma mais simples de publicar é pela [Vercel](https://vercel.com/new). Veja também a [documentação de deploy do Next.js](https://nextjs.org/docs/app/getting-started/deploying).
